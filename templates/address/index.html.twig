@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddressController!{% endblock %}
+
+{% block body %}
+    <h1>Ajouter</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_address_create') }}">Ajouter</a></li>
+        </ul>
+    </nav>
+    <section>
+        {% for address in address_s %}
+            <ul>
+                <li>Adresse : {{ address.street }} {{ address.zip }} {{ address.city }}</li>
+                <li><a href="{{ path('app_address_update', {"address": address.id}) }}">Modifier</a></li>
+                <form action="{{ path('app_address_delete', {"address": address.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ address.id) }}">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </ul>
+        {% endfor %}
+    </section>
+{% endblock %}
