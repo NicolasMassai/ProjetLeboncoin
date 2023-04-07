@@ -5,8 +5,9 @@ namespace App\Entity;
 use App\Repository\AcquisitionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: AcquisitionRepository::class)]
-class Acquisition
+class Acquisition 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -65,4 +66,5 @@ class Acquisition
 
         return $this;
     }
+
 }

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: AnnonceRepository::class)]
 class Annonce
 {
@@ -30,7 +31,7 @@ class Annonce
     private ?User $user = null;
 
     #[ORM\Column]
-    private ?bool $is_visible = null;
+    private ?bool $isvisible = null;
 
     #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
     private ?Acquisition $acquisition = null;
@@ -98,12 +99,12 @@ class Annonce
 
     public function isIsVisible(): ?bool
     {
-        return $this->is_visible;
+        return $this->isvisible;
     }
 
-    public function setIsVisible(bool $is_visible): self
+    public function setIsVisible(bool $isvisible): self
     {
-        $this->is_visible = $is_visible;
+        $this->isvisible = $isvisible;
 
         return $this;
     }
@@ -154,4 +155,6 @@ class Annonce
 
         return $this;
     }
+
+    
 }

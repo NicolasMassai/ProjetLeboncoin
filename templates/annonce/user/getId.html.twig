@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnnonceController!{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h1>{{ annonce.name }}</h1>
+        <nav>
+            <a href="{{ path('app_annonce_create', {"annonce": annonce.id}) }}">Créer une annonce</a>
+            <a href="{{ path('app_annonce_update', {"annonce": annonce.id}) }}">Modifier</a>
+            <form action="{{ path('app_annonce_delete', {"annonce": annonce.id}) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
+                <button type="submit">Supprimer</button>
+            </form>
+        </nav>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BankController!{% endblock %}
+
+{% block body %}
+    <h1>Solde</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_amount_create') }}">Ajouter</a></li>
+        </ul>
+    </nav>
+    <section>
+     {% for amount in amounts %}
+            <ul>
+                <li>Amount : {{ amount.amount }} $</li>
+            </ul>  
+        {% endfor %}
+    </section>
+{% endblock %}

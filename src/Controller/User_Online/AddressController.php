@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User_Online;
 
 use App\Entity\Address;
 use App\Form\AddressType;
@@ -28,24 +28,25 @@ class AddressController extends AbstractController
         $this->em = $em;
     }
 
-    #[Route('/address', name: 'app_address')]
+    #[Route('/user/address', name: 'app_address')]
     public function index(AddressRepository $addressRepository): Response
     {
         $address = $addressRepository->findAll();
 
-        return $this->render('address/index.html.twig', [
+        return $this->render('address/user/index.html.twig', [
             'address_s' => $address,
         ]);
     }
 
-    #[Route('/address/find/{address}', name: 'app_address_id')]
+    #[Route('/user/address/find/{address}', name: 'app_address_id')]
     public function getId(Address $address): Response
     {
-        return $this->render('address/getId.html.twig', [
+        return $this->render('address/user/getId.html.twig', [
             'address' => $address
         ]);
     }
-    #[Route('/address/create', name: 'app_address_create')]
+    
+    #[Route('/user/address/create', name: 'app_address_create')]
     public function create(Request $request): Response
     {
         $address = new Address();
@@ -57,13 +58,13 @@ class AddressController extends AbstractController
             return $this->redirectToRoute('app_address');
         }
 
-        return $this->render('address/create.html.twig', [
+        return $this->render('address/user/create.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
   
-    #[Route('/address/update/{address}', name: 'app_address_update')]
+    #[Route('/user/address/update/{address}', name: 'app_address_update')]
     public function update(Address $address, Request $request): Response
     {
         $form = $this->createForm(AddressType::class, $address);
@@ -73,12 +74,12 @@ class AddressController extends AbstractController
             $this->em->flush();
             return $this->redirectToRoute('app_address');
         }
-        return $this->render('address/create.html.twig', [
+        return $this->render('address/user/create.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
-    #[Route('/address/delete/{address}', name: 'app_address_delete')]
+    #[Route('/user/address/delete/{address}', name: 'app_address_delete')]
     public function delete(Address $address, Request $request): Response
     {
         if ($this->isCsrfTokenValid('delete' . $address->getId(), $request->get('_token'))) {
