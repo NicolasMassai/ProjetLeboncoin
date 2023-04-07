@@ -11,28 +11,18 @@
     </nav>
     <section>  
         {% for annonce in annonces %}
-            {% if annonce.isvisible == 1 %}
                 <ul>
                     <li>Nom Annonce : {{ annonce.name }}</li>
                     <li>Description : {{ annonce.description }}</li>
                     <li>Prix : {{ annonce.price }}</li>
                     <li><a href="{{ path('app_annonce_update', {"annonce": annonce.id}) }}">Modifier</a></li>
+                    <li><a href="{{ path('app_annonce_id', {"annonce": annonce.id}) }}">Afficher Détails</a></li>
                     <form action="{{ path('app_annonce_delete', {"annonce": annonce.id}) }}" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
                         <button type="submit">Supprimer</button>
                     </form>
                 </ul>
-            {% else %}
-                </ul>
-                    <li><a href="{{ path('app_annonce_update', {"annonce": annonce.id}) }}">Modifier</a></li>
-                    <form action="{{ path('app_annonce_delete', {"annonce": annonce.id}) }}" method="post">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.id) }}">
-                        <button type="submit">Supprimer</button>
-                    </form>
-                </ul>
-            {% endif %}
         {% endfor %}
     </section>
 {% endblock %}

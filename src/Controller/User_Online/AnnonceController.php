@@ -4,6 +4,8 @@ namespace App\Controller\User_Online;
 
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
+use App\Entity\Commentary;
+use App\Form\CommentaryType;
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,13 +36,14 @@ class AnnonceController extends AbstractController
     }
 
     #[Route('/user/annonce/find/{annonce}', name: 'app_annonce_id')]
-    public function getId(Annonce $annonce): Response
+    public function getId(Annonce $annonce, Commentary $commentary): Response
     {
         return $this->render('annonce/user/getId.html.twig', [
-            'annonce' => $annonce
+            'annonce' => $annonce,
+            'commentary' => $commentary
         ]);
     }
-    
+
     #[Route('/user/annonce/create', name: 'app_annonce_create')]
     public function create(Request $request): Response
     {
@@ -58,7 +61,7 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-  
+
     #[Route('/user/annonce/update/{annonce}', name: 'app_annonce_update')]
     public function update(Annonce $annonce, Request $request): Response
     {
@@ -84,4 +87,6 @@ class AnnonceController extends AbstractController
 
         return $this->redirectToRoute("app_annonce");
     }
+
+  
 }

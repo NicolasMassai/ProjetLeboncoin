@@ -155,6 +155,5 @@ class Annonce
 
         return $this;
     }
-
     
 }
